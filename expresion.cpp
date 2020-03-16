@@ -11,7 +11,7 @@ using namespace std;
 
 
 //----------------------------------------------------------------------
-class Nodo{
+/*class Nodo{
 	private:
 		int dato;
 		Nodo *sig;
@@ -79,7 +79,7 @@ void Expresion::recExpresion(char x){
 	for(int i=0;i<exp1;i++){
 		cout<<exp1[i];
 	}
-}*/
+}
 //----------------------------------------------------
 int main(){
 	
@@ -88,18 +88,21 @@ int main(){
 	
 }
 
+*/
+
+
 
 //---------------------------2--------------------------------
 
-class nodo { //ESTRUCTURA DE LA PILA   
+class Nodo { //ESTRUCTURA DE LA PILA   
        private: 	       
        char palabra;
-       struct nodo *sgte;
-       nodo *Ptrpila;//Definimos estructura tipo Pila
-	nodo *Tlista; //Definimos estructura tipo Lista
+       struct Nodo *sgte;
+       Nodo *Ptrpila;//Definimos estructura tipo Pila
+	Nodo *Tlista; //Definimos estructura tipo Lista
 	
        public:
-	nodo();
+	Nodo();
 	void push(Ptrpila &,char);
         char pop(Ptrpila &);
         void agregar_atras(Tlista &,char);
@@ -110,7 +113,7 @@ class nodo { //ESTRUCTURA DE LA PILA
         void balanceoSimbolos( Ptrpila &, char []);
        };
 
-nodo::nodo{ //constructor
+Nodo::Nodo{ //constructor
 }
 
 
@@ -120,8 +123,10 @@ nodo::nodo{ //constructor
 
 /*                 Funcion Principal
 -----------------------------------------------------*/
-  int main(void)
-    {   Ptrpila p=NULL;
+  int main(void){
+	  
+	Nodo nod;  
+        Ptrpila p=NULL;
         Ptrpila M=NULL;
         Tlista lista=NULL;
         char cad[max], c,x;
@@ -189,7 +194,7 @@ nodo::nodo{ //constructor
     }
 /*                 Apilar
 -------------------------------------------------*/
-void nodo:: push(Ptrpila &p,char a)
+void Nodo:: push(Ptrpila &p,char a)
 {
     Ptrpila q=new struct nodo;
     q->palabra=a;
@@ -199,7 +204,7 @@ void nodo:: push(Ptrpila &p,char a)
 
 /*                 Desempilar
 -------------------------------------------------*/
-char nodo:: pop(Ptrpila &p)
+char Nodo:: pop(Ptrpila &p)
 {
     int n;
     Ptrpila aux;
@@ -214,7 +219,7 @@ char nodo:: pop(Ptrpila &p)
 /*                 Agregar a la Lista
 --------------------------------------------------
 funcion para agregar caracter a la lista de salida*/
-void nodo::agregar_atras(Tlista &lista,char a)
+void Nodo::agregar_atras(Tlista &lista,char a)
 {
     Tlista t, q = new(struct nodo);
 
@@ -238,7 +243,7 @@ void nodo::agregar_atras(Tlista &lista,char a)
 }
 /*                 Destruir Pila
 --------------------------------------------------*/
-void nodo :: destruir(Ptrpila &M)
+void Nodo :: destruir(Ptrpila &M)
 {    Ptrpila aux;
 
      if(M !=NULL)
@@ -257,7 +262,7 @@ void nodo :: destruir(Ptrpila &M)
 ----------------------------------------------------
 esta prioridad se usa al momento de leer el caracter
 de la cadena*/
-int nodo:: prioridad_infija(char a)
+int Nodo:: prioridad_infija(char a)
 {
     if(a=='^')
         return 4;
@@ -277,7 +282,7 @@ int nodo:: prioridad_infija(char a)
 ---------------------------------------------------
 esta prioridad es usada para los elementos que se
 encuentran en la pila */
-int nodo:: prioridad_pila(char a)
+int Nodo:: prioridad_pila(char a)
 {
     if(a=='^')
         return 3;
@@ -294,7 +299,7 @@ int nodo:: prioridad_pila(char a)
 }
 /*               Imprimir Lista
 ----------------------------------------------------*/
-void nodo:: imprimir( Tlista &lista)
+void Nodo:: imprimir( Tlista &lista)
 {
     Ptrpila aux;
     aux=lista;
@@ -311,7 +316,7 @@ void nodo:: imprimir( Tlista &lista)
 
 /*                Balanceo de simbolos de agrupacion
 ---------------------------------------------------------------------*/
-void nodo:: balanceoSimbolos( Ptrpila &p, char cad[])
+void Nodo:: balanceoSimbolos( Ptrpila &p, char cad[])
 {
      Ptrpila aux;
      int i = 0;
