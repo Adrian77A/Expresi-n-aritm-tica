@@ -3,8 +3,12 @@
 #include<iostream>
 #include<stdio.h>
 #include<string>
+#include<cstdlib>
+#include<string.h>
+#define max 50
 
 using namespace std;
+
 
 //----------------------------------------------------------------------
 class Nodo{
@@ -85,18 +89,22 @@ int main(){
 }
 
 
-#include<iostream>
-#include<cstdlib>
-#include<stdio.h>
-#include<string.h>
-#define max 50
+//---------------------------2--------------------------------
 
-using namespace std;
-
-struct nodo {     //ESTRUCTURA DE LA PILA          
+class nodo { //ESTRUCTURA DE LA PILA   
+       private: 	       
        char palabra;
        struct nodo *sgte;
+	
+       public:
+	nodo();
        };
+
+nodo::nodo{
+}
+
+
+
 
 typedef struct nodo *Ptrpila; //Definimos estructura tipo Pila
 typedef struct nodo *Tlista; //Definimos estructura tipo Lista
