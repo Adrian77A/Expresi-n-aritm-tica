@@ -95,29 +95,27 @@ class nodo { //ESTRUCTURA DE LA PILA
        private: 	       
        char palabra;
        struct nodo *sgte;
+       nodo *Ptrpila;//Definimos estructura tipo Pila
+	nodo *Tlista; //Definimos estructura tipo Lista
 	
        public:
 	nodo();
+	void push(Ptrpila &,char);
+        char pop(Ptrpila &);
+        void agregar_atras(Tlista &,char);
+        void destruir(Ptrpila &);
+        int  prioridad_infija(char );
+       int  prioridad_pila(char );
+       void imprimir( Tlista &);
+        void balanceoSimbolos( Ptrpila &, char []);
        };
 
-nodo::nodo{
+nodo::nodo{ //constructor
 }
 
 
 
 
-typedef struct nodo *Ptrpila; //Definimos estructura tipo Pila
-typedef struct nodo *Tlista; //Definimos estructura tipo Lista
-
-
-void push(Ptrpila &,char);
-char pop(Ptrpila &);
-void agregar_atras(Tlista &,char);
-void destruir(Ptrpila &);
-int  prioridad_infija(char );
-int  prioridad_pila(char );
-void imprimir( Tlista &);
-void balanceoSimbolos( Ptrpila &, char []);
 
 
 /*                 Funcion Principal
@@ -191,7 +189,7 @@ void balanceoSimbolos( Ptrpila &, char []);
     }
 /*                 Apilar
 -------------------------------------------------*/
-void push(Ptrpila &p,char a)
+void nodo:: push(Ptrpila &p,char a)
 {
     Ptrpila q=new struct nodo;
     q->palabra=a;
@@ -201,7 +199,7 @@ void push(Ptrpila &p,char a)
 
 /*                 Desempilar
 -------------------------------------------------*/
-char pop(Ptrpila &p)
+char nodo:: pop(Ptrpila &p)
 {
     int n;
     Ptrpila aux;
@@ -216,7 +214,7 @@ char pop(Ptrpila &p)
 /*                 Agregar a la Lista
 --------------------------------------------------
 funcion para agregar caracter a la lista de salida*/
-void agregar_atras(Tlista &lista,char a)
+void nodo::agregar_atras(Tlista &lista,char a)
 {
     Tlista t, q = new(struct nodo);
 
@@ -240,7 +238,7 @@ void agregar_atras(Tlista &lista,char a)
 }
 /*                 Destruir Pila
 --------------------------------------------------*/
-void destruir(Ptrpila &M)
+void nodo :: destruir(Ptrpila &M)
 {    Ptrpila aux;
 
      if(M !=NULL)
@@ -259,7 +257,7 @@ void destruir(Ptrpila &M)
 ----------------------------------------------------
 esta prioridad se usa al momento de leer el caracter
 de la cadena*/
-int prioridad_infija(char a)
+int nodo:: prioridad_infija(char a)
 {
     if(a=='^')
         return 4;
@@ -279,7 +277,7 @@ int prioridad_infija(char a)
 ---------------------------------------------------
 esta prioridad es usada para los elementos que se
 encuentran en la pila */
-int prioridad_pila(char a)
+int nodo:: prioridad_pila(char a)
 {
     if(a=='^')
         return 3;
@@ -296,7 +294,7 @@ int prioridad_pila(char a)
 }
 /*               Imprimir Lista
 ----------------------------------------------------*/
-void imprimir( Tlista &lista)
+void nodo:: imprimir( Tlista &lista)
 {
     Ptrpila aux;
     aux=lista;
@@ -313,7 +311,7 @@ void imprimir( Tlista &lista)
 
 /*                Balanceo de simbolos de agrupacion
 ---------------------------------------------------------------------*/
-void balanceoSimbolos( Ptrpila &p, char cad[])
+void nodo:: balanceoSimbolos( Ptrpila &p, char cad[])
 {
      Ptrpila aux;
      int i = 0;
