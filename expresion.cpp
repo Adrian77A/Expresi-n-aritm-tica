@@ -107,8 +107,8 @@ class Nodo { //ESTRUCTURA DE LA PILA
         char pop(Ptrpila &);
         void agregar_atras(Tlista &,char);
         void destruir(Ptrpila &);
-        int  prioridad_infija(char );
-       int  prioridad_pila(char );
+        float  prioridad_infija(char );
+       float  prioridad_pila(char );
        void imprimir( Tlista &);
         void balanceoSimbolos( Ptrpila &, char []);
        };
@@ -262,7 +262,7 @@ void Nodo :: destruir(Ptrpila &M)
 ----------------------------------------------------
 esta prioridad se usa al momento de leer el caracter
 de la cadena*/
-int Nodo:: prioridad_infija(char a)
+float Nodo:: prioridad_infija(char a)
 {
     if(a=='^')
         return 4;
@@ -282,7 +282,7 @@ int Nodo:: prioridad_infija(char a)
 ---------------------------------------------------
 esta prioridad es usada para los elementos que se
 encuentran en la pila */
-int Nodo:: prioridad_pila(char a)
+float Nodo:: prioridad_pila(char a)
 {
     if(a=='^')
         return 3;
