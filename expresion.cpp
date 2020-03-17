@@ -1,143 +1,45 @@
-
-//Leer una expresión aritmético en infijo y resolverla empleando pila (debe pasar de infijo a posfijo)
 #include<iostream>
-#include<stdio.h>
-#include<string>
 #include<cstdlib>
+#include<stdio.h>
 #include<string.h>
 #define max 50
 
 using namespace std;
 
-
-//----------------------------------------------------------------------
-/*class Nodo{
-	private:
-		int dato;
-		Nodo *sig;
-		friend class Pila;
-		
-	public:
-            Nodo(){//constructor de nodo
-                    this->dato=dato;
-                    this->sig=NULL;
-            }
-            ~Nodo(){//destructor de nodo
-            	cout<<"Se ha liberado la memoria\n";
-			}
-};
-//----------------------------------------------------------------------------
-
-class Pila{
-	private:
-		Nodo *tope;
-		
-	public:
-		Pila();//constructor de pila
-       	void Apilar(string);
-        void DesApilar();
-        void VerTope();
-        bool PilaVacia();
-        void prioridadOperador();
-        void prioridadPila();
-};
-
-
-Pila::Pila(){//constructor de pila
- tope=NULL;
-}
-
-//void Pila::Apilar(string x){
-//}
-
-//-----------------------------------------------------
-class Expresion{
-	private:
-		char expresion[100];
-	public:
-		char Leer();
-		//void Mostrar();
-		//void recExpresion(char);
-};
-
-char Expresion::Leer(){
-	char expresion[100];
-	int n=10;
-	for(int i;i<n;i++){
-		cin>>expresion[i];
-		}
-	return expresion[i];
-}
-
-/*void Expresion::Mostrar(){
-	cout<<expresion;
-}
-
-void Expresion::recExpresion(char x){
-	char exp1[100];
-	exp1=x;
-	for(int i=0;i<exp1;i++){
-		cout<<exp1[i];
-	}
-}
-//----------------------------------------------------
-int main(){
-	
-	Expresion exp;
-	exp.Leer();
-	
-}
-
-*/
-
-
-
-//---------------------------2--------------------------------
-
-class Nodo { //ESTRUCTURA DE LA PILA   
-       private: 	       
+struct nodo {     //ESTRUCTURA DE LA PILA          
        char palabra;
-       struct Nodo *sgte;
-       Nodo *Ptrpila;//Definimos estructura tipo Pila
-	Nodo *Tlista; //Definimos estructura tipo Lista
-	
-       public:
-	Nodo();
-	void push(Ptrpila &,char);
-        char pop(Ptrpila &);
-        void agregar_atras(Tlista &,char);
-        void destruir(Ptrpila &);
-        float  prioridad_infija(char );
-       float  prioridad_pila(char );
-       void imprimir( Tlista &);
-        void balanceoSimbolos( Ptrpila &, char []);
+       struct nodo *sgte;
        };
 
-Nodo::Nodo{ //constructor
-}
+typedef struct nodo *Ptrpila; //Definimos estructura tipo Pila
+typedef struct nodo *Tlista; //Definimos estructura tipo Lista
 
 
-
-
+void push(Ptrpila &,char);
+char pop(Ptrpila &);
+void agregar_atras(Tlista &,char);
+void destruir(Ptrpila &);
+int  prioridad_infija(char );
+int  prioridad_pila(char );
+void imprimir( Tlista &);
+void balanceoSimbolos( Ptrpila &, char []);
 
 
 /*                 Funcion Principal
 -----------------------------------------------------*/
-  int main(void){
-	  
-	Nodo nod;  
-        Ptrpila p=NULL;
+  int main(void)
+    {   Ptrpila p=NULL;
         Ptrpila M=NULL;
         Tlista lista=NULL;
         char cad[max], c,x;
         int tam;
 
-        system("color 2E");   //0b
-		cout<<"\n\t\t___________________________________________________________________"<<endl;
-        cout<<"\n\t\tCONVERSION DE EXPRESIONES MATEMATICAS DE INFIJA A POSTFIJA\n\n";
-        cout<<"\n\t\t____________________________________________________________________"<<endl;
+        system("color B1");   //0b
+		cout<<"\n\t\t\t --------------------------------------------------------------------"<<endl;
+        cout<<"\t\t\t|      CONVERSION DE EXPRESIONES MATEMATICAS DE SUFIJA A POSTFIJA    |";
+        cout<<"\n\t\t\t --------------------------------------------------------------------"<<endl;
         do{
-           cout<<"\n\tINGRESE LA EXPRESION:";
+           cout<<"\n\n\t-> Ingrese la expresion sufija: ";
            gets(cad);
               if(M!=NULL)
                  destruir(M);
@@ -187,14 +89,15 @@ Nodo::Nodo{ //constructor
                 c=pop(p);
                 agregar_atras(lista,c);
             }
+system("color 3F"); 
 
         imprimir(lista);
-        system("pause");
+        
         return 0;
     }
 /*                 Apilar
 -------------------------------------------------*/
-void Nodo:: push(Ptrpila &p,char a)
+void push(Ptrpila &p,char a)
 {
     Ptrpila q=new struct nodo;
     q->palabra=a;
@@ -204,7 +107,7 @@ void Nodo:: push(Ptrpila &p,char a)
 
 /*                 Desempilar
 -------------------------------------------------*/
-char Nodo:: pop(Ptrpila &p)
+char pop(Ptrpila &p)
 {
     int n;
     Ptrpila aux;
@@ -219,7 +122,7 @@ char Nodo:: pop(Ptrpila &p)
 /*                 Agregar a la Lista
 --------------------------------------------------
 funcion para agregar caracter a la lista de salida*/
-void Nodo::agregar_atras(Tlista &lista,char a)
+void agregar_atras(Tlista &lista,char a)
 {
     Tlista t, q = new(struct nodo);
 
@@ -243,7 +146,7 @@ void Nodo::agregar_atras(Tlista &lista,char a)
 }
 /*                 Destruir Pila
 --------------------------------------------------*/
-void Nodo :: destruir(Ptrpila &M)
+void destruir(Ptrpila &M)
 {    Ptrpila aux;
 
      if(M !=NULL)
@@ -262,7 +165,7 @@ void Nodo :: destruir(Ptrpila &M)
 ----------------------------------------------------
 esta prioridad se usa al momento de leer el caracter
 de la cadena*/
-float Nodo:: prioridad_infija(char a)
+int prioridad_infija(char a)
 {
     if(a=='^')
         return 4;
@@ -282,7 +185,7 @@ float Nodo:: prioridad_infija(char a)
 ---------------------------------------------------
 esta prioridad es usada para los elementos que se
 encuentran en la pila */
-float Nodo:: prioridad_pila(char a)
+int prioridad_pila(char a)
 {
     if(a=='^')
         return 3;
@@ -299,13 +202,14 @@ float Nodo:: prioridad_pila(char a)
 }
 /*               Imprimir Lista
 ----------------------------------------------------*/
-void Nodo:: imprimir( Tlista &lista)
+void imprimir( Tlista &lista)
 {
     Ptrpila aux;
     aux=lista;
 
     if(lista!=NULL)
-     {    cout<<"\t\nNOTACION POSTFIJA\n\n";
+     {    cout<<"\n\n\t~ ~ ~ ~ Notacion Posfija ~ ~ ~ ~\n\n";
+     	cout<<"\t-> Expresion posfija: ";
           while(aux!=NULL)
           {    cout<<aux->palabra;
                aux = aux->sgte;
@@ -316,7 +220,7 @@ void Nodo:: imprimir( Tlista &lista)
 
 /*                Balanceo de simbolos de agrupacion
 ---------------------------------------------------------------------*/
-void Nodo:: balanceoSimbolos( Ptrpila &p, char cad[])
+void balanceoSimbolos( Ptrpila &p, char cad[])
 {
      Ptrpila aux;
      int i = 0;
@@ -356,19 +260,7 @@ void Nodo:: balanceoSimbolos( Ptrpila &p, char cad[])
      }
 
      if(p==NULL)
-         cout<<"\n\tBalanceo CORRECTO..."<<endl<<endl;
+         cout<<"\t\n\t* * * Balanceo CORRECTO * * *"<<endl<<endl;
      else
-         cout<<"\n\t Balanceo INCORRECTO, faltan simbolos de agrupacion..."<<endl;
+         cout<<"\n\t- - - -Balanceo INCORRECTO, faltan simbolos de agrupacion- - -"<<endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
